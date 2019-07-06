@@ -45,8 +45,8 @@ public class Model
     void LoadDivisions() {
 
         Divisions.add("IX-A#5,25,197,331,565,1012#P");
-        Divisions.add("XI-C#321-400#322,397,398");//missing number logic
-        Divisions.add("TY-C#721-800#P");
+        Divisions.add("XI-C#1,33,157,322,397,398#P");
+        Divisions.add("TY-C#2,4,8,16,32,64,128,256,512,1024,2048#P");
     }
 
 

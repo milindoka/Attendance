@@ -58,22 +58,27 @@ public class TextAdapter extends BaseAdapter
     {
         String temp[],temp1[];
         temp=divline.split("#");
-        temp1=temp[1].split("-");
+        temp1=temp[1].split(",");
+        int len=temp[1].length();
+     //   String start=temp1[0];
+      //  String end=temp1[len-1];
 
-        int start=Integer.parseInt(temp1[0]);
-        int end=Integer.parseInt(temp1[1]);
-        int len=end-start+1;
 
-        Fillpositions(temp[2]);
+    //    Fillpositions(temp[2]);
 
         numbers=new String[len];
-        for (int i =0; i <len; i++) {
+        numbers=temp1;
+        /*
+        for (int i =0; i <len; i++)
+        {
             {
-                numbers[i] = String.format("%d", start + i);
+                numbers[i] = temp1[i];
 
             }
             notifyDataSetChanged();
         }
+        */
+            notifyDataSetChanged();
     }
 
     @Override

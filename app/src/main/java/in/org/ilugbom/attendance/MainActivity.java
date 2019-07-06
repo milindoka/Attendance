@@ -136,8 +136,7 @@ public class MainActivity extends AppCompatActivity
 
 
         model  = new Model();
-    //    model.LoadDivisions();      ??
-
+       model.LoadDivisions();
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -286,7 +285,7 @@ public class MainActivity extends AppCompatActivity
   //     CDD.LoadDivisionsFromPrefs();currentDivision=0;    ??
 
 
- //       DisplayDivision();   //assert currentDivision=0;    ??
+       DisplayDivision();   //assert currentDivision=0;    ??
 
 
       //  navigationView.setBackgroundColor(getResources().getColor(R.color.skyBlue));
@@ -662,8 +661,9 @@ void CloseAndSaveAttendance()
 
     void DisplayDivision()   //// Display division with index currentdivision
     {   TA.Divisions.clear();
-        TA.DisplayDivision(model.Divisions.get(currentDivision));
         buttonDivTitle.setText(model.GetDivisionTitle(currentDivision));
+        Msg.Show(model.Divisions.get(currentDivision));
+        TA.DisplayDivision(model.Divisions.get(currentDivision));
         if(HistoryMode) {
             setTitle(model.DateArray.get(currentDivision));
             FC.setText(String.format("%d",TA.selectedPositions.size()));
