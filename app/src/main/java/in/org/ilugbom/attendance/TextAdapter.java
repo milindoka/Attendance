@@ -26,22 +26,15 @@ import java.util.Set;
 
 public class TextAdapter extends BaseAdapter
 {
-    String[] numbers = new String[120];
+   // String[] numbers = new String[8];
+    String[] numbers={"1","3","34","77","122"};
     Set<Integer> selectedPositions=new HashSet<Integer>();
     Set<Integer> tempPositions=new HashSet<Integer>();
-    List<String> list = new ArrayList<String>();
     boolean found=false;
     ArrayList<String> Divisions=new ArrayList<String>();
     Context context;
 
 
-    void TextAdapter()
-    {
-        list = new ArrayList<String>(Arrays.asList(numbers));
-    }
-
-
-    //TextAdapter.java
 
     void Fillpositions(String abChain)
     {   selectedPositions.clear();

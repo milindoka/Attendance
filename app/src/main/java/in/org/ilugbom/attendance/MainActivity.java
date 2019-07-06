@@ -110,12 +110,12 @@ public class MainActivity extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  LL = (LinearLayout) findViewById(R.id.ClassBar);
+        //  LL = (LinearLayout) findViewById(R.id.ClassBar);
 
         if(!StoragePermissionGranted()) ;
 
         if(!StoragePermissionGranted()) finish();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
         setSupportActionBar(toolbar);
@@ -129,13 +129,14 @@ public class MainActivity extends AppCompatActivity
         TA = new TextAdapter(this);
         final GridView gridView = (GridView) findViewById(R.id.gridview);
         gridView.setAdapter(TA);
-        for (int i = 0; i < 120; i++) {
-            TA.numbers[i] = String.format("%d", 5000 + i + 1);
-        }
+   //     for (int i = 0; i < 120; i++) {
+   //         TA.numbers[i] = String.format("%d", 5000 + i + 1);
+   //
+   //     }
 
 
         model  = new Model();
-        model.LoadDivisions();
+    //    model.LoadDivisions();      ??
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -282,10 +283,10 @@ public class MainActivity extends AppCompatActivity
 
         setTitle(model.GetDateTimeString());
 
-        CDD.LoadDivisionsFromPrefs();currentDivision=0;
+  //     CDD.LoadDivisionsFromPrefs();currentDivision=0;    ??
 
 
-        DisplayDivision();   //assert currentDivision=0;
+ //       DisplayDivision();   //assert currentDivision=0;    ??
 
 
       //  navigationView.setBackgroundColor(getResources().getColor(R.color.skyBlue));
