@@ -18,6 +18,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -610,8 +611,7 @@ public class MainActivity extends AppCompatActivity
                int option=item.getItemId();
                switch(option)
                { case R.id.one : CloseAndSaveAttendance(); break;
-                 case R.id.two :
-                   Msg.Show("Continue Attendance"); break;
+                 case R.id.two :Msg.Show("Continue Attendance"); break;
                    case R.id.three :
                        fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorGreen));
                        Msg.Show("Attendance Discarded");
@@ -757,10 +757,15 @@ void CloseAndSaveAttendance()
         File myFile = new File(FileNameWithPath);
 
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+
+        Uri uri = FileProvider.getUriForFile(MainActivity.this,
+                BuildConfig.APPLICATION_ID + ".provider",
+                myFile);
+
         if(myFile.exists())
         {
             intentShareFile.setType("application/text");
-            intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(myFile));
+            intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
 
             intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
                     "Sharing File Attendance...");

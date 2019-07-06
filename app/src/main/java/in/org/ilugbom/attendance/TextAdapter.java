@@ -75,7 +75,10 @@ public class TextAdapter extends BaseAdapter
 
         numbers=new String[len];
         for (int i =0; i <len; i++) {
-            numbers[i] = String.format("%d",start+i );
+            {
+                numbers[i] = String.format("%d", start + i);
+
+            }
             notifyDataSetChanged();
         }
     }

@@ -179,19 +179,3 @@ public class Model
 
 }  // end Model class
 
-///////////////////// Extras
-//////////////////////////////////////////////////////////////////////
-///To do
-
-        /*
-            ///save pdf
-            WritePDF wp = new WritePDF();
-            wp.SetData(CollegeName1,Clas+"-"+Div,Subject,
-                    Examiner,Exam,sMax,Date,PTstr,Set.get(1),Mrk.get(1));
-            wp.SetRollArray(Roll,Mrk);
-            String pdfname=FileNameWithPath.replaceAll(".mrk",".pdf");
-            wp.write(pdfname);
-
-            showtop("Saved in mrk and pdf format");
-            //	showtop(pdfname);
-*/
