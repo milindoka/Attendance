@@ -112,9 +112,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //  LL = (LinearLayout) findViewById(R.id.ClassBar);
 
-        if(!StoragePermissionGranted()) ;
-
-        if(!StoragePermissionGranted()) finish();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
@@ -282,7 +279,7 @@ public class MainActivity extends AppCompatActivity
 
         setTitle(model.GetDateTimeString());
 
-  //     CDD.LoadDivisionsFromPrefs();currentDivision=0;    ??
+       CDD.LoadDivisionsFromPrefs();currentDivision=0;
 
 
        DisplayDivision();   //assert currentDivision=0;    ??
@@ -451,35 +448,6 @@ public class MainActivity extends AppCompatActivity
     }
 ////////////////////////////////////////////////
 
-
-    public  boolean StoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG,"Permission is granted");
-                return true;
-            } else {
-
-                Log.v(TAG,"Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG,"Permission is granted");
-            return true;
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-            Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
-            //resume tasks needing this permission
-        }
-    }
 
 
 
@@ -842,6 +810,48 @@ void    SetHistoryMode()
         return true;  ///cleard all cases preferencace can be saved
 
     }
+
+
+
+    public  boolean StoragePermissionGranted()
+    {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                //Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+
+                //Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            //  Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED)
+        {
+            Msg.Show("Permission Granted");
+
+            String AL=GetAttendanceLine(); //current line :  AAPAPAPP...etc
+            model.SaveList(AL);
+            TA.selectedPositions.clear();
+            DisplayDivision();
+            modified=false;
+
+        }
+    }
+
+
+
 
 
 }   /////CLASS END
