@@ -140,7 +140,7 @@ public class MonthlyReport {
 
     void FillMatrix(){
         String date = "", rollRange;
-        String rollNoStart = "", rollNoEnd = "";
+
 
         LoadFromHistory (DIV, MONT);
         try {
@@ -148,10 +148,10 @@ public class MonthlyReport {
 
             int Last= PresencyLine.size();
             rollRange = RollNos.get(0);
-            String RollNoArray [] = rollRange.split("-");
-            rollNoStart = RollNoArray[0];
-            rollNoEnd = RollNoArray[1];
-            int TotNoStnts = Integer.parseInt(rollNoEnd)-Integer.parseInt(rollNoStart)+1;
+            String RollNoArray [] = rollRange.split(",");
+         //   rollNoStart = RollNoArray[0];
+     
+            int TotNoStnts = RollNoArray.length;
 
             for (int i = 0; i < TotNoStnts; i++) {         // matrix.length = Tot No of Students
                 for (int j = 0; j < matrix[i].length; j++){   // matrix[i].length = 35 (Columns)
@@ -187,7 +187,7 @@ public class MonthlyReport {
             }
 
             for(int i = 0; i < TotNoStnts; i++){
-                matrix[i][1] = ""+ (Integer.parseInt(rollNoStart)+i);
+                matrix[i][1] = RollNoArray[i];
             }
 
             for(int i = 0; i < TotNoStnts; i++){

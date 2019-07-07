@@ -18,7 +18,7 @@ public class CreateDivDialog
 {
     Model model;
     private MainActivity MA;
-    public String tempDivTitle,tempFroll,tempLroll;
+    public String tempDivTitle;
     String college="School/College";
     String teacher="Name";
     String subject="Subject";
@@ -42,12 +42,11 @@ public class CreateDivDialog
         dialog.show();
 
         final EditText ClassDiv = dialog.findViewById(R.id.division);
-        final EditText FirstRoll = dialog.findViewById(R.id.firstroll);
-        final EditText LastRoll = dialog.findViewById(R.id.lastroll);
+        final EditText RollSeries = dialog.findViewById(R.id.firstroll);
+
         if(editmode) { ///if editmode =true offer current values
             ClassDiv.setText(tempDivTitle);
-            FirstRoll.setText(tempFroll);
-            LastRoll.setText(tempLroll);
+
         }
         Button mBtn_cancel = dialog.findViewById(R.id.btn_cancel);
         Button mBtn_ok = dialog.findViewById(R.id.btn_ok);
@@ -63,15 +62,15 @@ public class CreateDivDialog
         {
             @Override
             public void onClick(View v)
-            { String frollstring=FirstRoll.getText().toString();
-                String lrollstring=LastRoll.getText().toString();
+            { String RollString=RollSeries.getText().toString();
+
                 String classdiv=ClassDiv.getText().toString();
 
-                if(frollstring.length()==0)
+                if(RollString.length()==0)
                 { Msg.Show("Invlid Roll"); return; }
 
                 String temp[],temp1[],rollcall="";
-                temp=frollstring.split(",");
+                temp=RollString.split(",");
                // temp1=temp[1].split(",");
                 int len=temp.length;
 
