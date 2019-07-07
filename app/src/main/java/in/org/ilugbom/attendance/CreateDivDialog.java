@@ -67,22 +67,34 @@ public class CreateDivDialog
                 String lrollstring=LastRoll.getText().toString();
                 String classdiv=ClassDiv.getText().toString();
 
-                if(frollstring.length()==0 || lrollstring.length()==0)
+                if(frollstring.length()==0)
                 { Msg.Show("Invlid Roll"); return; }
 
-                int  in1 = new Integer(frollstring);
-                int  in2 = new Integer(lrollstring);
-                int strength=in2-in1+1;
-                if(strength>500) Msg.show("Class Strength > 500");
-                if(classdiv.length()==0) Msg.show("Class-Division Empty");
-                Msg.Show(String.format("Strength - %d",strength));
+                String temp[],temp1[],rollcall="";
+                temp=frollstring.split(",");
+               // temp1=temp[1].split(",");
+                int len=temp.length;
+                Msg.Show(String.format("Strength - %d",len));
+               // int  in1 = new Integer(frollstring);
+               // int  in2 = new Integer(lrollstring);
+
+               // if(strength>500) Msg.show("Class Strength > 500");
+                //if(len==0) Msg.show("Class-Division Empty");
+                rollcall+=temp[0].trim();
+                if(len>1)
+                for(int i=1;i<len;i++)
+                {   rollcall+=",";
+                    rollcall+=temp[i].trim();
+
+                }
+
                 if(editmode) ///if true add new division to Divisions Array
                 {
                     model.Divisions.set(MainActivity.currentDivision, classdiv + "#" + frollstring + "-" + lrollstring + "#" + "PP");
                 }
                 else
                 { /// else replace new division with current division
-                    model.Divisions.add(classdiv + "#" + frollstring + "-" + lrollstring + "#" + "PP");
+                    model.Divisions.add(classdiv + "#" + rollcall + "#" + "PP");
                     MainActivity.currentDivision = model.Divisions.size() - 1;
                 }
                 MA.DisplayDivision();
