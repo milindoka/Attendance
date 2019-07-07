@@ -89,9 +89,9 @@ public class CreateDivDialog
                     rollcall+=",";
                 }
                String RemovedLastComma=rollcall.substring(0,rollcall.length()-1);
-                if(editmode) ///if true add new division to Divisions Array
+                if(editmode) ///if true replace division to Divisions Array
                 {
-                    model.Divisions.set(MainActivity.currentDivision, classdiv + "#" + frollstring + "-" + lrollstring + "#" + "PP");
+                    model.Divisions.set(MainActivity.currentDivision, classdiv + "#" + RemovedLastComma + "#" + "PP");
                 }
                 else
                 { /// else replace new division with current division

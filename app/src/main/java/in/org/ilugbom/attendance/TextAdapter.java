@@ -64,7 +64,7 @@ public class TextAdapter extends BaseAdapter
       //  String end=temp1[len-1];
 
 
-    //    Fillpositions(temp[2]);
+       Fillpositions(temp[2]);
 
         numbers=new String[len];
         numbers=temp1;

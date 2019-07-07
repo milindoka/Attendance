@@ -34,7 +34,7 @@ public class Model
 
     }
 
-    String GetRollStartFinish(int index)
+    String GetRollStrip(int index)
     {
         String temp[];
         temp = Divisions.get(index).split("#");
@@ -74,7 +74,7 @@ public class Model
             txtData +="#";
             txtData += GetDivisionTitle(MainActivity.currentDivision);
             txtData += "#";
-            txtData += GetRollStartFinish(MainActivity.currentDivision);
+            txtData += GetRollStrip(MainActivity.currentDivision);
             txtData += "#";
             txtData += AttendanceLine;
             txtData += "\n";

@@ -455,11 +455,6 @@ public class MainActivity extends AppCompatActivity
     {
         CDD.editmode=true;
         CDD.tempDivTitle=model.GetDivisionTitle(currentDivision);
-        String temp,temp2[];
-        temp=model.GetRollStartFinish(currentDivision);
-        temp2=temp.split("-");
-        CDD.tempFroll=temp2[0];
-        CDD.tempLroll=temp2[1];
         CDD.showDialog(MainActivity.this);
     }
 
