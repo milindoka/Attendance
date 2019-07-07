@@ -74,27 +74,28 @@ public class CreateDivDialog
                 temp=frollstring.split(",");
                // temp1=temp[1].split(",");
                 int len=temp.length;
-                Msg.Show(String.format("Strength - %d",len));
-               // int  in1 = new Integer(frollstring);
-               // int  in2 = new Integer(lrollstring);
 
-               // if(strength>500) Msg.show("Class Strength > 500");
-                //if(len==0) Msg.show("Class-Division Empty");
-                rollcall+=temp[0].trim();
-                if(len>1)
-                for(int i=1;i<len;i++)
-                {   rollcall+=",";
+                for(int i=0;i<len;i++) ///Examine each piece of Roll Input
+                { if(temp[i].contains("-"))
+                       { temp1=temp[i].split("-");
+                           int  in1 = new Integer(temp1[0]);
+                           int  in2 = new Integer(temp1[1]);
+                           if(in2<in1) { Msg.Show("Invalid Roll"); continue; }
+                           for(int j=in1;j<=in2;j++)
+                               rollcall+=String.format("%d,",j);
+                         continue;
+                       }
                     rollcall+=temp[i].trim();
-
+                    rollcall+=",";
                 }
-
+               String RemovedLastComma=rollcall.substring(0,rollcall.length()-1);
                 if(editmode) ///if true add new division to Divisions Array
                 {
                     model.Divisions.set(MainActivity.currentDivision, classdiv + "#" + frollstring + "-" + lrollstring + "#" + "PP");
                 }
                 else
                 { /// else replace new division with current division
-                    model.Divisions.add(classdiv + "#" + rollcall + "#" + "PP");
+                    model.Divisions.add(classdiv + "#" + RemovedLastComma + "#" + "PP");
                     MainActivity.currentDivision = model.Divisions.size() - 1;
                 }
                 MA.DisplayDivision();
