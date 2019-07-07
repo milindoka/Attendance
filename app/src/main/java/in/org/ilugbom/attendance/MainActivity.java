@@ -625,7 +625,7 @@ void CloseAndSaveAttendance()
     void DisplayDivision()   //// Display division with index currentdivision
     {   TA.Divisions.clear();
         buttonDivTitle.setText(model.GetDivisionTitle(currentDivision));
-        Msg.Show(model.Divisions.get(currentDivision));
+      //  Msg.Show(model.Divisions.get(currentDivision));
         TA.DisplayDivision(model.Divisions.get(currentDivision));
         if(HistoryMode) {
             setTitle(model.DateArray.get(currentDivision));

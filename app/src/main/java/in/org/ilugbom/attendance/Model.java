@@ -111,6 +111,7 @@ public class Model
         try {
 
             File myFile = new File(FileNameWithPath);
+
             FileInputStream fIn = new FileInputStream(myFile);
             BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
             String aDataRow = "";
@@ -135,7 +136,7 @@ public class Model
 
         {
             Msg.show(e.getMessage());
-            //    Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
         }
     }
 
