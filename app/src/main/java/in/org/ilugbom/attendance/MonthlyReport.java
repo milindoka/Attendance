@@ -37,6 +37,8 @@ import static in.org.ilugbom.attendance.MainActivity.currentDivision;
 
 public class MonthlyReport {
 
+
+
     String DIV,MONT;
     void SetDIVMON(String div,String month) { DIV=div; MONT=month; }
     void callcdd(CreateDivDialog CDD){ this.CDD = CDD; }
@@ -278,6 +280,7 @@ public class MonthlyReport {
     int totalDays=0;
     int PresentCount[];
     String ClassDiv="";
+    String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     ArrayList<String> roll=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> attendanceLines=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> APchain=new ArrayList<String>();//creating new generic arraylist
@@ -309,7 +312,7 @@ public class MonthlyReport {
     }
 
 
-    void LoadAttendanceLines(String division, String month)
+    void LoadAttendanceLines(String division, int month)
     {
         attendanceLines.removeAll(attendanceLines);
        // Msg.show(month);
@@ -325,8 +328,9 @@ public class MonthlyReport {
             PresencyLine.clear();
             RollNos.clear();
 
+            String strMonth=String.format("%02d",month);
             while ((AttendanceRecord = bfrReader.readLine()) != null)
-            {    if(!AttendanceRecord.substring(3,5).equalsIgnoreCase(month)) continue;
+            {    if(!AttendanceRecord.substring(3,5).equalsIgnoreCase(strMonth)) continue;
                 //Msg.show(AttendanceRecord.substring(3,4));
                  if (AttendanceRecord.contains("#"+division+"#"))
                     attendanceLines.add(AttendanceRecord);
@@ -388,10 +392,12 @@ public class MonthlyReport {
     }
 
 
-    void PrintAttendanceReportPDF(String divi,String mon) throws DocumentException, IOException
-    {  LoadAttendanceLines(divi, mon);
+    void PrintAttendanceReportPDF(String divi,int mon) throws DocumentException, IOException
+    {
+        LoadAttendanceLines(divi, mon);
        if(attendanceLines.size()<=0) { Msg.Show("No Attendance Found"); return;}
         if(strength>200) return;
+
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
 

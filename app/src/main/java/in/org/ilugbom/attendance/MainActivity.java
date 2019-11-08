@@ -656,22 +656,8 @@ void CloseAndSaveAttendance()
 
     }
 
-
-
-    void PrintMonthlyReport(String div,String month)
+    void PrintMonthlyReport(String div,int month)
     {
-        /*
-        MR.callcdd(CDD);
-        MR.SetDIVMON(div, month);
-        try {
-            MR.AttendanceReportPdf();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-
-   */
 
         try {
             MR.PrintAttendanceReportPDF(div,month);
@@ -682,55 +668,6 @@ void CloseAndSaveAttendance()
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
-
-
-
-
-
-    }
-
-
-    private void showAlertDialog() {
-        // Prepare grid view
-        PickMonthAdapter PMA = new PickMonthAdapter(this);
-        GridView monthgridView = new GridView(this);
-
-        monthgridView.setAdapter(PMA);
-        monthgridView.setNumColumns(3);
-        monthgridView.setVerticalSpacing(4);
-        monthgridView.setHorizontalSpacing(4);
-        //setPadding(2,2,2,2);
-        monthgridView.setBackgroundColor(Color.WHITE);
-        // Set grid view to alertDialog
-        final AlertDialog builder = new AlertDialog.Builder(this).create();
-        builder.setCancelable(true);
-        builder.setView(monthgridView);
-        builder.setTitle("( Div : "+ model.GetDivisionTitle(currentDivision)+" )    Choose Month");
-        builder.show();
-        monthgridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                mmm=String.format("%02d",position+1);
-                ddd=model.GetDivisionTitle(currentDivision);
-
-                Msg.Show("Creating "+ddd +" " +mmm+" Report ...");
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        PrintMonthlyReport(ddd,mmm);
-                    }
-                }, 400);
-
-                builder.cancel();
-            }
-        });
     }
 
 
@@ -864,9 +801,6 @@ void    SetHistoryMode()
 
         }
     }
-
-
-
 
 
 }   /////CLASS END

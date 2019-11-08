@@ -19,7 +19,7 @@ import java.util.Calendar;
  */
 
 public class DivMonthPickerDlg extends AppCompatActivity
-{    String[] monthnames = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+{
     MainActivity MA;
     GridView g12;
 
@@ -54,18 +54,16 @@ public class DivMonthPickerDlg extends AppCompatActivity
         gView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final String monthchosen=String.format("%02d",position+1);
+                //final String monthchosen=String.format("%02d",position+1);
                 final String divichosen=Divisions.get(divindex);
-
-                Msg.Show("Creating  "+divichosen +":" +monthnames[position]+" Report ...");
-
+                final int monthindex=position+1;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        MA.PrintMonthlyReport(divichosen,monthchosen);
+                        MA.PrintMonthlyReport(divichosen,monthindex);
                     }
-                }, 400);
+                }, 300);
 
                 dialog.dismiss();
             }
