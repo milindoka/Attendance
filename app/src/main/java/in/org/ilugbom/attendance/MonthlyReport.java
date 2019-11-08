@@ -377,7 +377,7 @@ public class MonthlyReport {
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
 
-        String filename="monthlyAttendance.pdf";
+        String filename="/sdcard/monthlyAttendance.pdf";
         Document document = new Document(PageSize.A4.rotate());
         document.setMargins(50, 10, 25, 25);
         PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -388,8 +388,7 @@ public class MonthlyReport {
         FillRollArray();
         Check_ThirtyOneDays_And_Fill_APChain();
 
-        AddHeader(document);
-
+        AddTheHeader(document);
         AttendanceGrid(document);
 
 //	        AddFooter(document);

@@ -56,6 +56,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -659,6 +660,7 @@ void CloseAndSaveAttendance()
 
     void PrintMonthlyReport(String div,String month)
     {
+        /*
         MR.callcdd(CDD);
         MR.SetDIVMON(div, month);
         try {
@@ -668,7 +670,25 @@ void CloseAndSaveAttendance()
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+
+   */
+
+        try {
+            MR.PrintAttendanceReportPDF();
+        } catch (DocumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
         Msg.Show("Monthly Report.pdf Created");
+
+
+
+
     }
 
 
