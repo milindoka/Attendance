@@ -674,7 +674,7 @@ void CloseAndSaveAttendance()
    */
 
         try {
-            MR.PrintAttendanceReportPDF();
+            MR.PrintAttendanceReportPDF(div,month);
         } catch (DocumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -684,7 +684,7 @@ void CloseAndSaveAttendance()
         }
 
 
-        Msg.Show("Monthly Report.pdf Created");
+
 
 
 

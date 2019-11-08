@@ -312,7 +312,7 @@ public class MonthlyReport {
     void LoadAttendanceLines(String division, String month)
     {
         attendanceLines.removeAll(attendanceLines);
-
+       // Msg.show(month);
         String FileNameWithPath = "/sdcard/AttendanceData.atd";
         try {
             File FileToRead = new File(FileNameWithPath);
@@ -326,8 +326,9 @@ public class MonthlyReport {
             RollNos.clear();
 
             while ((AttendanceRecord = bfrReader.readLine()) != null)
-            {
-                 if (AttendanceRecord.contains("IX-A"))
+            {    if(!AttendanceRecord.substring(3,5).equalsIgnoreCase(month)) continue;
+                //Msg.show(AttendanceRecord.substring(3,4));
+                 if (AttendanceRecord.contains("#"+division+"#"))
                     attendanceLines.add(AttendanceRecord);
              }
         } catch (Exception e){
@@ -387,9 +388,9 @@ public class MonthlyReport {
     }
 
 
-    void PrintAttendanceReportPDF() throws DocumentException, IOException
-    {  LoadAttendanceLines(" ", " ");
-
+    void PrintAttendanceReportPDF(String divi,String mon) throws DocumentException, IOException
+    {  LoadAttendanceLines(divi, mon);
+       if(attendanceLines.size()<=0) { Msg.Show("No Attendance Found"); return;}
         if(strength>200) return;
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
@@ -412,6 +413,8 @@ public class MonthlyReport {
 
 
         document.close();
+
+        Msg.Show("Monthly Report.pdf Created");
     }
 
 
