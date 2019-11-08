@@ -240,7 +240,8 @@ public class MonthlyReport {
         headerMatrix[0][7] = month;
     }
 
-    public void LoadFromHistory(String div, String month ){
+    public void LoadFromHistory(String div, String month )
+    {
 
         String FileNameWithPath = "/sdcard/AttendanceData.atd";
         try {
@@ -311,14 +312,30 @@ public class MonthlyReport {
     void LoadAttendanceLines(String division, String month)
     {
         attendanceLines.removeAll(attendanceLines);
-        attendanceLines.add("02/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-        attendanceLines.add("03/11/19 - Sun - 20:23#IX-A#5,25,197,331,565,1012#PPAAAP");
-        attendanceLines.add("08/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-        attendanceLines.add("17/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-        attendanceLines.add("22/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-        attendanceLines.add("28/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-        attendanceLines.add("31/11/19 - Sat - 11:53#IX-A#5,25,197,331,565,1012#APPPAP");
-    }
+
+        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        try {
+            File FileToRead = new File(FileNameWithPath);
+            FileInputStream FINS = new FileInputStream(FileToRead);
+            BufferedReader bfrReader = new BufferedReader(new InputStreamReader(FINS));
+            String AttendanceRecord = " ";
+            String temp[], Roll;
+            DateArray.clear();
+            Divisions.clear();
+            PresencyLine.clear();
+            RollNos.clear();
+
+            while ((AttendanceRecord = bfrReader.readLine()) != null)
+            {
+                 if (AttendanceRecord.contains("IX-A"))
+                    attendanceLines.add(AttendanceRecord);
+             }
+        } catch (Exception e){
+
+            Msg.show(e.getMessage());
+            //    Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+         }
 
 
     void Check_ThirtyOneDays_And_Fill_APChain()
