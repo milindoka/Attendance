@@ -280,7 +280,7 @@ public class MonthlyReport {
     int totalDays=0;
     int PresentCount[];
     String ClassDiv="";
-    String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
     ArrayList<String> roll=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> attendanceLines=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> APchain=new ArrayList<String>();//creating new generic arraylist
@@ -393,9 +393,9 @@ public class MonthlyReport {
 
 
     void PrintAttendanceReportPDF(String divi,int mon) throws DocumentException, IOException
-    {
+    {  String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
         LoadAttendanceLines(divi, mon);
-       if(attendanceLines.size()<=0) { Msg.Show("No Attendance Found"); return;}
+       if(attendanceLines.size()<=0) { Msg.Show("No Attendance Record Found"); return;}
         if(strength>200) return;
 
         requiredtables=strength/35;
@@ -420,7 +420,7 @@ public class MonthlyReport {
 
         document.close();
 
-        Msg.Show("Monthly Report.pdf Created");
+        Msg.Show("Report For "+divi+"-"+monthnames[mon]+" Created");
     }
 
 

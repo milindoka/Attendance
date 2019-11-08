@@ -63,7 +63,7 @@ public class DivMonthPickerDlg extends AppCompatActivity
 
                         MA.PrintMonthlyReport(divichosen,monthindex);
                     }
-                }, 300);
+                }, 50);
 
                 dialog.dismiss();
             }
