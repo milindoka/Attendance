@@ -177,9 +177,9 @@ public class CreateDivDialog
     void LoadDivisionsFromPrefs()
     {  SharedPreferences settings = MA.getSharedPreferences("DIVS", 0);
         String alldivisions = settings.getString("key1", "XI-Z");
-        college = settings.getString("key2", "School/College");
-        teacher = settings.getString("key3", "Name");
-        subject=settings.getString("key4","Subject");
+        college = settings.getString("key2", "SIWS College");
+        teacher = settings.getString("key3", "MO");
+        subject=settings.getString("key4","Maths");
         email = settings.getString("key5", "Email");
 
         if(alldivisions.contains("│"))
