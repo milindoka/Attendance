@@ -43,6 +43,7 @@ public class MonthlyReport {
     int totalDays=0;
     int PresentCount[];
     String ClassDiv="";
+    String college,teacher,subject;
 
     ArrayList<String> roll=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> attendanceLines=new ArrayList<String>();//creating new generic arraylist
@@ -50,6 +51,9 @@ public class MonthlyReport {
     int strength=35,requiredtables=3;
 
      Font normal = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
+
+     void SetCollegeTeacherSubject(String college,String teacher, String subject)
+     { this.college=college; this.teacher=teacher;this.subject=subject;  }
 
     void FillRollArray()
     {   roll.removeAll(roll);
@@ -182,7 +186,7 @@ public class MonthlyReport {
         table.addCell(cell);
 
 
-        cell = new PdfPCell(new Phrase("SIWS College"));cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell(new Phrase(college));cell.setBorder(PdfPCell.NO_BORDER);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
         table.addCell(cell);
 
@@ -190,7 +194,7 @@ public class MonthlyReport {
         cell = new PdfPCell(new Phrase(" "));cell.setBorder(PdfPCell.NO_BORDER);
         table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Name of Teacher :"));cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell(new Phrase("Name of Teacher : "+teacher));cell.setBorder(PdfPCell.NO_BORDER);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
         table.addCell(cell);
 
@@ -199,7 +203,7 @@ public class MonthlyReport {
         table.addCell(cell);
 
 
-        cell = new PdfPCell(new Phrase("Subject :"));cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell(new Phrase("Subject : "+subject));cell.setBorder(PdfPCell.NO_BORDER);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);cell.setBorder(PdfPCell.NO_BORDER);
         table.addCell(cell);
 

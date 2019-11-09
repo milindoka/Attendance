@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class DivMonthPickerDlg extends AppCompatActivity
 {
     MainActivity MA;
-    GridView g12;
+  //  GridView g12;
 
     ArrayList<String> Divisions = new ArrayList<String>();
 

@@ -24,7 +24,9 @@ public class CreateDivDialog
     String subject="Subject";
     String email="Email";
 
-
+    String GetCollege() {return college;}
+    String GetTeacher() {return teacher;}
+    String GetSubject() {return subject;}
 
     boolean editmode=false;  ///if true Record is refreshed, if false it added to division array
 

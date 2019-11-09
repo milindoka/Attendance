@@ -659,7 +659,8 @@ void CloseAndSaveAttendance()
     void PrintMonthlyReport(String div,int month)
     {
      //   String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-      //  Msg.Show("test");
+     //  Msg.Show("test");
+        MR.SetCollegeTeacherSubject(CDD.GetCollege(),CDD.GetTeacher(),CDD.GetSubject());
         try {
             MR.PrintAttendanceReportPDF(div,month);
         } catch (DocumentException e) {
