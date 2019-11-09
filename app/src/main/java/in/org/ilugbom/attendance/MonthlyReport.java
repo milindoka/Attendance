@@ -80,7 +80,10 @@ public class MonthlyReport {
     {
         attendanceLines.removeAll(attendanceLines);
 
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String rootDir = Environment.getExternalStorageDirectory().getPath();
+
+        String FileNameWithPath    = rootDir + "/" + "AttendanceData.atd";
+
         try {
             File FileToRead = new File(FileNameWithPath);
             FileInputStream FINS = new FileInputStream(FileToRead);
@@ -148,7 +151,8 @@ public class MonthlyReport {
 
 
     void PrintAttendanceReportPDF(String divi,int mon) throws DocumentException, IOException
-    {  String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    {  String[] monthnames = {" ","January","February","Marach","April","May",
+            "June","July","August","September","October","November","December"};
 
         LoadAttendanceLines(divi, mon);
         if(attendanceLines.size()<=0) { Msg.Show("No Attendance Record Found"); return;}
@@ -157,7 +161,9 @@ public class MonthlyReport {
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
 
-        String filename="/sdcard/monthlyAttendance.pdf";
+        String rootDir = Environment.getExternalStorageDirectory().getPath();
+        String filename=rootDir + "/" + "AttendanceReport.pdf";
+
         Document document = new Document(PageSize.A4.rotate());
         document.setMargins(50, 10, 25, 25);
         PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -166,7 +172,7 @@ public class MonthlyReport {
         FillRollArray();
         Check_ThirtyOneDays_And_Fill_APChain();
 
-        AddTheHeader(document);
+        AddTheHeader(document,monthnames[mon]);
         AttendanceGrid(document);
 
 //	        AddFooter(document);
@@ -177,10 +183,12 @@ public class MonthlyReport {
     }
 
 
-    void AddTheHeader(Document document) throws DocumentException, IOException
+    void AddTheHeader(Document document,String month) throws DocumentException, IOException
     {
         PdfPTable table = new PdfPTable(3);
-        PdfPCell cell = new PdfPCell(new Phrase(" "));
+
+        PdfPCell cell = new PdfPCell(new Phrase("Attendance Report"));
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
         cell.setBorder(PdfPCell.NO_BORDER);
         table.setWidthPercentage(95);
         table.addCell(cell);
@@ -191,10 +199,11 @@ public class MonthlyReport {
         table.addCell(cell);
 
 
-        cell = new PdfPCell(new Phrase(" "));cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell(new Phrase(month));cell.setBorder(PdfPCell.NO_BORDER);
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
         table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Name of Teacher : "+teacher));cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell(new Phrase("Teacher : "+teacher));cell.setBorder(PdfPCell.NO_BORDER);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
         table.addCell(cell);
 
@@ -204,12 +213,9 @@ public class MonthlyReport {
 
 
         cell = new PdfPCell(new Phrase("Subject : "+subject));cell.setBorder(PdfPCell.NO_BORDER);
-        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);cell.setBorder(PdfPCell.NO_BORDER);
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);cell.setBorder(PdfPCell.NO_BORDER);
         table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Date : 23/02/18"));cell.setBorder(PdfPCell.NO_BORDER);
-        cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-        table.addCell(cell);
 
         table.setSpacingAfter(10f);
         document.add(table);

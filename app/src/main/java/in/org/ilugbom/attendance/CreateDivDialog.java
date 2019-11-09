@@ -19,9 +19,9 @@ public class CreateDivDialog
     Model model;
     private MainActivity MA;
     public String tempDivTitle;
-    String college="School/College";
-    String teacher="Name";
-    String subject="Subject";
+    String college="SIWS College";
+    String teacher="MO";
+    String subject="Maths";
     String email="Email";
 
     String GetCollege() {return college;}

@@ -1,6 +1,7 @@
 package in.org.ilugbom.attendance;
 
 import android.content.Context;
+import android.os.Environment;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +58,9 @@ public class Model
         //  modified=false;
         //  String tmpStr;
         boolean newfile=false;
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String rootDir = Environment.getExternalStorageDirectory().getPath();
+        String FileNameWithPath = rootDir + "/" + "AttendanceData.atd";
+
         try {
             File myFile = new File(FileNameWithPath);
             if (!myFile.exists()) { newfile=true; myFile.createNewFile();}
