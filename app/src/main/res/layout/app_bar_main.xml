@@ -28,15 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/newfab"
+        android:src="@drawable/newfabtrnsparent"
         android:scaleType="center"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+         />
 
 
     <TextView android:layout_height="wrap_content"
         android:id="@+id/FabCounter"
         android:layout_width="wrap_content"
-        android:text=""
+        android:text=" "
         android:elevation="6dp"
         android:textSize="18dp"
         android:textColor="#fff"
