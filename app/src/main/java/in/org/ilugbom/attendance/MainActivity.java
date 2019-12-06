@@ -343,19 +343,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_carry_forward)
         {
+           //if(AttendanceInProgress) { Msg.ImageMessage("Attendance in Progress",R.drawable.blue_red_60); return true; }
             String lastAPchain=CarryForward.LastAPchain(model.GetDivisionTitle(currentDivision));
          if(lastAPchain.length()==0)  { Msg.Show("No Previous Record"); return true;}
             TA.Fillpositions(lastAPchain);
             TA.notifyDataSetChanged();
             FC.setText(String.format("%d",TA.selectedPositions.size()));
 
-            if(!AttendanceInProgress) {
-                fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorPink));
-                Msg.Show("Mark Attendance");
-                AttendanceInProgress=!AttendanceInProgress;
-            }
-
-
+            fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorPink));
+            Msg.Show("Last Attendance Copied");
+            AttendanceInProgress=true;
+            modified=true;
             return true;
         }
 
