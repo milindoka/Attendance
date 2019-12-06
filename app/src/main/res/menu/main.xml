@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_carry_forward"
+        android:orderInCategory="50"
+        android:title="Carry Forward"
+        app:showAsAction="never" />
+
+
+    <item
         android:id="@+id/action_invert_selection"
         android:orderInCategory="100"
         android:title="Invert Selection"

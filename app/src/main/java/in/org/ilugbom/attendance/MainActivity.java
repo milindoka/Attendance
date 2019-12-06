@@ -340,6 +340,28 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+
+        if (id == R.id.action_carry_forward)
+        {
+            String lastAPchain=CarryForward.LastAPchain(model.GetDivisionTitle(currentDivision));
+         if(lastAPchain.length()==0)  { Msg.Show("No Previous Record"); return true;}
+            TA.Fillpositions(lastAPchain);
+            TA.notifyDataSetChanged();
+            FC.setText(String.format("%d",TA.selectedPositions.size()));
+
+            if(!AttendanceInProgress) {
+                fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorPink));
+                Msg.Show("Mark Attendance");
+                AttendanceInProgress=!AttendanceInProgress;
+            }
+
+
+            return true;
+        }
+
+
+
+
         if (id == R.id.action_invert_selection)
         {
             InvertAttendance();
