@@ -151,8 +151,8 @@ public class MonthlyReport {
 
 
     void PrintAttendanceReportPDF(String divi,int mon) throws DocumentException, IOException
-    {  String[] monthnames = {" ","January","February","Marach","April","May",
-            "June","July","August","September","October","November","December"};
+    {  String[] monthnames = {" ","JAN","FEB","MAR","APR","MAY",
+            "JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
 
         LoadAttendanceLines(divi, mon);
         if(attendanceLines.size()<=0) { Msg.Show("No Attendance Record Found"); return;}
@@ -162,7 +162,7 @@ public class MonthlyReport {
         if(strength%35!=0) requiredtables++;
 
         String rootDir = Environment.getExternalStorageDirectory().getPath();
-        String filename=rootDir + "/" + "AttendanceReport.pdf";
+        String filename=rootDir + "/" + "Report-"+divi+"-"+monthnames[mon]+".pdf";
 
         Document document = new Document(PageSize.A4.rotate());
         document.setMargins(50, 10, 25, 25);
@@ -179,7 +179,7 @@ public class MonthlyReport {
 
         document.close();
 
-        Msg.Show("Report For "+divi+"-"+monthnames[mon]+" Created");
+        Msg.Show("Report-"+divi+"-"+monthnames[mon]+".pdf Created");
     }
 
 
