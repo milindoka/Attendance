@@ -42,6 +42,7 @@ public class MonthlyReport {
 
     int totalDays=0;
     int PresentCount[];
+    int DailyCount[]=new int[31]; //For daily present total
     String ClassDiv="";
     String college,teacher,subject;
 
@@ -71,6 +72,8 @@ public class MonthlyReport {
         { roll.add(rolltemp[x]);
             APchain.add("");
         }
+
+        for(int x=0;x<31;x++) DailyCount[x]=0; //initialize dailycount
 
         PresentCount=new int[rolltemp.length];
     }
@@ -304,6 +307,44 @@ public class MonthlyReport {
             //cell.setBorder(PdfPCell.NO_BORDER);
             table2.addCell(cell);
         }
+///////////// Last Daily count row
+
+
+        //srno=String.format("%d",0);
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        cell = new PdfPCell(new Phrase("Total",normal));
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        //cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        for(int j=0;j<31;j++)
+        { String APmark=String.format("%d",j);
+            cell = new PdfPCell(new Phrase(APmark,normal));
+            cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            cell.setPaddingBottom(5f);
+            table2.addCell(cell);
+        }
+
+
+        cell = new PdfPCell(new Phrase(String.format("%02d",0),normal));
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        //cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        DecimalFormat df = new DecimalFormat("000.00");
+        double percent = 3*100/totalDays;
+        String percentage = df.format(percent);
+
+        cell = new PdfPCell(new Phrase(percentage,normal));
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        //cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+
+
         document.add(table2);
     }
 
