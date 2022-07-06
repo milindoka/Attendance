@@ -140,7 +140,7 @@ public class MonthlyReport {
 
                 if(datefound)
                 { char ap=lastblock.charAt(k);
-                    if(ap=='P') PresentCount[k]++;
+                    if(ap=='P') { PresentCount[k]++;DailyCount[i-1]++;}
                     APchain.set(k,temp2+ap);
 
                 }
@@ -321,7 +321,7 @@ public class MonthlyReport {
         table2.addCell(cell);
 
         for(int j=0;j<31;j++)
-        { String APmark=String.format("%d",j);
+        { String APmark=String.format("%d",DailyCount[j]);
             cell = new PdfPCell(new Phrase(APmark,normal));
             cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cell.setPaddingBottom(5f);
