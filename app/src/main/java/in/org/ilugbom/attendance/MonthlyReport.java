@@ -307,41 +307,37 @@ public class MonthlyReport {
             //cell.setBorder(PdfPCell.NO_BORDER);
             table2.addCell(cell);
         }
-///////////// Last Daily count row
-
+///////////// Second-Last Present  count row
 
         //srno=String.format("%d",0);
         cell = new PdfPCell();
         cell.setBorder(PdfPCell.NO_BORDER);
         table2.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Total",normal));
+        cell = new PdfPCell(new Phrase("Total - P",normal));
         cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
         //cell.setBorder(PdfPCell.NO_BORDER);
         table2.addCell(cell);
 
         for(int j=0;j<31;j++)
-        { String APmark=String.format("%d",DailyCount[j]);
+        {   String APmark="";
+            if(DailyCount[j]>0) APmark=String.format("%d",DailyCount[j]);
             cell = new PdfPCell(new Phrase(APmark,small));
             cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cell.setPaddingBottom(5f);
             table2.addCell(cell);
         }
 
-
-        cell = new PdfPCell(new Phrase(String.format("%02d",0),normal));
-        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
-        //cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
         table2.addCell(cell);
 
-        DecimalFormat df = new DecimalFormat("000.00");
-        double percent = 3*100/totalDays;
-        String percentage = df.format(percent);
-
-        cell = new PdfPCell(new Phrase(percentage,normal));
-        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
-        //cell.setBorder(PdfPCell.NO_BORDER);
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
         table2.addCell(cell);
+
+///////////////Second Last Line End
+
 
 
 
