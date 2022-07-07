@@ -52,7 +52,7 @@ public class MonthlyReport {
     int strength=35,requiredtables=3;
 
      Font normal = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
-
+     Font small = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL);
      void SetCollegeTeacherSubject(String college,String teacher, String subject)
      { this.college=college; this.teacher=teacher;this.subject=subject;  }
 
@@ -322,7 +322,7 @@ public class MonthlyReport {
 
         for(int j=0;j<31;j++)
         { String APmark=String.format("%d",DailyCount[j]);
-            cell = new PdfPCell(new Phrase(APmark,normal));
+            cell = new PdfPCell(new Phrase(APmark,small));
             cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cell.setPaddingBottom(5f);
             table2.addCell(cell);
