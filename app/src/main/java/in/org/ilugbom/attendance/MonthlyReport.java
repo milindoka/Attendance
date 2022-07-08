@@ -336,8 +336,38 @@ public class MonthlyReport {
         cell.setBorder(PdfPCell.NO_BORDER);
         table2.addCell(cell);
 
-///////////////Second Last Line End
+///////////////Second Last Line End /////////////////////////////////////
 
+///////////// Last-Line  Absent Count row
+
+        //srno=String.format("%d",0);
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        cell = new PdfPCell(new Phrase("Total - A",normal));
+        cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        //cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        for(int j=0;j<31;j++)
+        {   String APmark="";
+            if(DailyCount[j]>0) APmark=String.format("%d",roll.size()-DailyCount[j]);
+            cell = new PdfPCell(new Phrase(APmark,small));
+            cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            cell.setPaddingBottom(5f);
+            table2.addCell(cell);
+        }
+
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+        cell = new PdfPCell();
+        cell.setBorder(PdfPCell.NO_BORDER);
+        table2.addCell(cell);
+
+///////////////Second Last Line End /////////////////////////////////////
 
 
 
