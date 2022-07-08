@@ -1,9 +1,8 @@
 package in.org.ilugbom.attendance;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -12,7 +11,6 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * Created by Milind on 9/2/18.

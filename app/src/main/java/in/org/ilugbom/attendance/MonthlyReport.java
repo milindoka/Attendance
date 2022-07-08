@@ -1,18 +1,12 @@
 package in.org.ilugbom.attendance;
 
-import android.graphics.Color;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.GridView;
+import androidx.appcompat.app.AlertDialog;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -21,19 +15,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.security.auth.Subject;
-
 import static android.media.CamcorderProfile.get;
-import static in.org.ilugbom.attendance.MainActivity.currentDivision;
 
 public class MonthlyReport {
 
