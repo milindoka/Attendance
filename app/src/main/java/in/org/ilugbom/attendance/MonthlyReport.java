@@ -1,8 +1,5 @@
 package in.org.ilugbom.attendance;
 
-import android.os.Environment;
-import androidx.appcompat.app.AlertDialog;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -76,9 +73,8 @@ public class MonthlyReport {
     {
         attendanceLines.removeAll(attendanceLines);
 
-        String rootDir = Environment.getExternalStorageDirectory().getPath();
-
-        String FileNameWithPath    = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
+        File atdFile=new File(StorageDirectory,"AttendanceData.atd");
+        String FileNameWithPath    = atdFile.getPath();
 
         try {
             File FileToRead = new File(FileNameWithPath);
@@ -157,8 +153,9 @@ public class MonthlyReport {
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
 
-        String rootDir = Environment.getExternalStorageDirectory().getPath();
-        String filename=rootDir + "/" + "Report-"+divi+"-"+monthnames[mon]+".pdf";
+        String tempfilename="Report-"+divi+"-"+monthnames[mon]+".pdf";
+        File atdFile=new File(StorageDirectory,tempfilename);
+        String filename    = atdFile.getPath();
 
         Document document = new Document(PageSize.A4.rotate());
         document.setMargins(50, 10, 25, 25);
@@ -361,8 +358,6 @@ public class MonthlyReport {
         table2.addCell(cell);
 
 ///////////////Second Last Line End /////////////////////////////////////
-
-
 
         document.add(table2);
     }
