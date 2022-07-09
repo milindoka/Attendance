@@ -44,7 +44,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    private String Filenamewithpath;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
     private static final int REQUEST_CODE = 1;
     private boolean modified=false;
@@ -266,6 +266,9 @@ public class MainActivity extends AppCompatActivity
 
 
       //  navigationView.setBackgroundColor(getResources().getColor(R.color.skyBlue));
+
+        Filenamewithpath=getFilePath();
+        Msg.Show(Filenamewithpath);
 
     }  ////////////////////////////////////////// END OF ONCREATE
        /////////////////////////////////////////////////////////
@@ -614,7 +617,7 @@ void CloseAndSaveAttendance()
         ///else normal mode so save on sd card
         if(StoragePermissionGranted())
         {
-            model.SaveList(AL);
+            model.SaveList(AL,Filenamewithpath);
             TA.selectedPositions.clear();
             DisplayDivision();
             modified=false;
@@ -795,7 +798,7 @@ void    SetHistoryMode()
             Msg.Show("Permission Granted");
 
             String AL=GetAttendanceLine(); //current line :  AAPAPAPP...etc
-            model.SaveList(AL);
+            model.SaveList(AL,Filenamewithpath);
             TA.selectedPositions.clear();
             DisplayDivision();
             modified=false;
@@ -811,7 +814,6 @@ void    SetHistoryMode()
         File atdFile=new File(atdDirectory,"AttendanceData.atd");
         return atdFile.getPath();
     }
-
 
 
 

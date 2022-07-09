@@ -52,15 +52,15 @@ public class Model
     }
 
 
-    void SaveList(String AttendanceLine)
+    void SaveList(String AttendanceLine,String FileNameWithPath)
     {
         int i;
         String txtData = "";
         //  modified=false;
         //  String tmpStr;
         boolean newfile=false;
-        String rootDir = Environment.getExternalStorageDirectory().getPath();
-        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
+    //    String rootDir = Environment.getExternalStorageDirectory().getPath();
+    //    String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File myFile = new File(FileNameWithPath);
