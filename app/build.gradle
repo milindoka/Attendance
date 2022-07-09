@@ -4,7 +4,7 @@ android {
     compileSdkVersion 32
     defaultConfig {
         applicationId "in.org.ilugbom.attendance"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 32
         versionCode 12
         versionName "3.2"

@@ -1,6 +1,7 @@
 package in.org.ilugbom.attendance;
 
 import android.Manifest;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -801,6 +802,18 @@ void    SetHistoryMode()
 
         }
     }
+
+
+    private String getFilePath()
+    {
+        ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
+        File atdDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File atdFile=new File(atdDirectory,"AttendanceData.atd");
+        return atdFile.getPath();
+    }
+
+
+
 
 
 }   /////CLASS END
