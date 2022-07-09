@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     private String Filenamewithpath;
+    private File StorageDirectory;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
     private static final int REQUEST_CODE = 1;
     private boolean modified=false;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity
     CreateDivDialog CDD=new CreateDivDialog();
     HelpDialog HD=new HelpDialog();
     MonthlyReport MR = new MonthlyReport();
+
 
     DayMonthPickerDlg dmpd=new DayMonthPickerDlg();
     DivMonthPickerDlg divmpd=new DivMonthPickerDlg();
@@ -267,8 +269,11 @@ public class MainActivity extends AppCompatActivity
 
       //  navigationView.setBackgroundColor(getResources().getColor(R.color.skyBlue));
 
-        Filenamewithpath=getFilePath();
-        Msg.Show(Filenamewithpath);
+          Filenamewithpath=get_atd_FilePath();
+          StorageDirectory=getStorageDirectory();
+
+         MR.SetStorageDirectory(StorageDirectory);
+        //Msg.Show(Filenamewithpath);
 
     }  ////////////////////////////////////////// END OF ONCREATE
        /////////////////////////////////////////////////////////
@@ -807,15 +812,22 @@ void    SetHistoryMode()
     }
 
 
-    private String getFilePath()
+    private File getStorageDirectory()
+    {
+        ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
+        File sDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        //File atdFile=new File(atdDirectory,"AttendanceData.atd");
+        //return atdFile.getPath();
+        return sDirectory;
+    }
+
+    private String get_atd_FilePath()
     {
         ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
         File atdDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         File atdFile=new File(atdDirectory,"AttendanceData.atd");
         return atdFile.getPath();
     }
-
-
 
 
 }   /////CLASS END

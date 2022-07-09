@@ -33,6 +33,7 @@ public class MonthlyReport {
     int DailyCount[]=new int[31]; //For daily present total
     String ClassDiv="";
     String college,teacher,subject;
+    File StorageDirectory;
 
     ArrayList<String> roll=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> attendanceLines=new ArrayList<String>();//creating new generic arraylist
@@ -43,6 +44,10 @@ public class MonthlyReport {
      Font small = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL);
      void SetCollegeTeacherSubject(String college,String teacher, String subject)
      { this.college=college; this.teacher=teacher;this.subject=subject;  }
+
+    void SetStorageDirectory(File SD)
+    { StorageDirectory = SD; }
+
 
     void FillRollArray()
     {   roll.removeAll(roll);
