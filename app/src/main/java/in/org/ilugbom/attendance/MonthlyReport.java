@@ -73,7 +73,7 @@ public class MonthlyReport {
 
         String rootDir = Environment.getExternalStorageDirectory().getPath();
 
-        String FileNameWithPath    = rootDir + "/" + "AttendanceData.atd";
+        String FileNameWithPath    = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File FileToRead = new File(FileNameWithPath);

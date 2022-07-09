@@ -59,7 +59,7 @@ public class Model
         //  String tmpStr;
         boolean newfile=false;
         String rootDir = Environment.getExternalStorageDirectory().getPath();
-        String FileNameWithPath = rootDir + "/" + "AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File myFile = new File(FileNameWithPath);
@@ -110,7 +110,7 @@ public class Model
 
     void LoadHistory()   //// Load History = Load All Records
     {
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
         try {
 
             File myFile = new File(FileNameWithPath);
@@ -150,7 +150,7 @@ public class Model
         String txtData = "";
         //  modified=false;
         //  String tmpStr;
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
         try {
             File myFile = new File(FileNameWithPath);
             myFile.createNewFile();

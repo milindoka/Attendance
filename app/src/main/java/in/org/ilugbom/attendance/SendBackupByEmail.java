@@ -2,6 +2,7 @@ package in.org.ilugbom.attendance;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class SendBackupByEmail
 
     void Send(String email)
     {
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         File fileIn = new File(FileNameWithPath);
         Uri u = Uri.fromFile(fileIn);

@@ -1,5 +1,7 @@
 package in.org.ilugbom.attendance;
 
+import android.os.Environment;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +18,7 @@ public class CreateReport
 
     void LoadHistory(String divtitle)   //// Load All Records of one division
     {
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
 

@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AlertDialog;
 
+import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.material.navigation.NavigationView;
@@ -672,7 +673,7 @@ void CloseAndSaveAttendance()
 
     public void ShareFile(){
 
-        String FileNameWithPath = "/sdcard/AttendanceData.atd";
+        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         File myFile = new File(FileNameWithPath);
 
