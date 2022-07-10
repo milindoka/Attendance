@@ -1,11 +1,6 @@
 package in.org.ilugbom.attendance;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.Environment;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,14 +18,14 @@ import java.util.Calendar;
 
 public class Model
 {
-    ArrayList<String> Divisions = new ArrayList<String>();
-    ArrayList<String> DateArray = new ArrayList<String>();
-    int currentindex=0;
+    ArrayList<String> Divisions = new ArrayList<>();
+    ArrayList<String> DateArray = new ArrayList<>();
+
 
 
     String GetDivisionTitle(int index)
     {
-        String temp[];
+        String[] temp;
         temp = Divisions.get(index).split("#");
         return temp[0];
 
@@ -38,7 +33,7 @@ public class Model
 
     String GetRollStrip(int index)
     {
-        String temp[];
+        String[] temp;
         temp = Divisions.get(index).split("#");
         return temp[1];
     }
@@ -54,18 +49,12 @@ public class Model
 
     void SaveList(String AttendanceLine,String FileNameWithPath)
     {
-        int i;
         String txtData = "";
-        //  modified=false;
-        //  String tmpStr;
         boolean newfile=false;
-    //    String rootDir = Environment.getExternalStorageDirectory().getPath();
-    //    String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File myFile = new File(FileNameWithPath);
             if (!myFile.exists()) { newfile=true; myFile.createNewFile();}
-            else newfile=false;
             FileOutputStream fOut = new FileOutputStream(myFile,true);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
@@ -149,8 +138,6 @@ public class Model
     {
         int i;
         String txtData = "";
-        //  modified=false;
-        //  String tmpStr;
         String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
         try {
             File myFile = new File(FileNameWithPath);
