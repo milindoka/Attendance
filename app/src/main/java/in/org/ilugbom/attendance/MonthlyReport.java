@@ -20,6 +20,11 @@ import java.util.ArrayList;
 
 import static android.media.CamcorderProfile.get;
 
+import android.content.Intent;
+import android.net.Uri;
+
+import androidx.core.content.FileProvider;
+
 public class MonthlyReport {
 
 
@@ -142,7 +147,7 @@ public class MonthlyReport {
     }
 
 
-    void PrintAttendanceReportPDF(String divi,int mon) throws DocumentException, IOException
+    void PrintAttendanceReportPDF(String divi,int mon,String pdffilewithpath) throws DocumentException, IOException
     {  String[] monthnames = {" ","JAN","FEB","MAR","APR","MAY",
             "JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
 
@@ -152,14 +157,9 @@ public class MonthlyReport {
 
         requiredtables=strength/35;
         if(strength%35!=0) requiredtables++;
-
-        String tempfilename="Report-"+divi+"-"+monthnames[mon]+".pdf";
-        File atdFile=new File(StorageDirectory,tempfilename);
-        String filename    = atdFile.getPath();
-
         Document document = new Document(PageSize.A4.rotate());
         document.setMargins(50, 10, 25, 25);
-        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        PdfWriter.getInstance(document, new FileOutputStream(pdffilewithpath));
         document.open();
 
         FillRollArray();

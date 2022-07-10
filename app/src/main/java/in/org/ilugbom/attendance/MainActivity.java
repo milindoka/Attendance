@@ -428,7 +428,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_setpreferences : CDD.showPreferenceDialog(MainActivity.this); break;
 
-            case R.id.nav_share : ShareFile();break;
+            case R.id.nav_share : ShareFile(Filenamewithpath);break;
 
             case R.id.nav_send : sbbe.Send(CDD.email); break;
         }
@@ -665,11 +665,17 @@ void CloseAndSaveAttendance()
 
     void PrintMonthlyReport(String div,int month)
     {
-     //   String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+        String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
      //  Msg.Show("test");
+
+        String tempfilename="Report-"+div+"-"+monthnames[month]+".pdf";
+        File pdfFile=new File(StorageDirectory,tempfilename);
+        String filename    = pdfFile.getPath();
+
         MR.SetCollegeTeacherSubject(CDD.GetCollege(),CDD.GetTeacher(),CDD.GetSubject());
         try {
-            MR.PrintAttendanceReportPDF(div,month);
+            MR.PrintAttendanceReportPDF(div,month,filename);
+            ShareFile(filename);
         } catch (DocumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -680,11 +686,11 @@ void CloseAndSaveAttendance()
     }
 
 
-    public void ShareFile(){
+    public void ShareFile(String sharefilepath){
 
         //String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
-        File myFile = new File(Filenamewithpath);
+        File myFile = new File(sharefilepath);
 
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
 
