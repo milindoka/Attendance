@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_share : ShareFile(Filenamewithpath);break;
 
-            case R.id.nav_send : sbbe.Send(CDD.email); break;
+            case R.id.nav_import : sbbe.Send(CDD.email); break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -501,7 +501,7 @@ public class MainActivity extends AppCompatActivity
                     DisplayDivision();
                     // Toast.makeText(getApplicationContext(),
                     //       "Division Deleted",Toast.LENGTH_LONG).show();
-                    model.SaveHistory();
+                    model.SaveHistory(Filenamewithpath);
                     Msg.Show("History Record Deleted");
                     //CDD.SaveDivisionsInPrefs();
 
@@ -613,7 +613,7 @@ void CloseAndSaveAttendance()
             String temp[];
             temp=atdLine.split("#");
             model.Divisions.set(currentDivision,temp[0]+"#"+temp[1]+"#"+AL);
-            model.SaveHistory();
+            model.SaveHistory(Filenamewithpath);
             modified=false;
             FC.setText(String.format("%d",TA.selectedPositions.size()));
             return;

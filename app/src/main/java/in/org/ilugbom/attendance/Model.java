@@ -134,11 +134,10 @@ public class Model
     }
 
 
-    void SaveHistory()
+    void SaveHistory(String FileNameWithPath)
     {
         int i;
         String txtData = "";
-        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
         try {
             File myFile = new File(FileNameWithPath);
             myFile.createNewFile();
