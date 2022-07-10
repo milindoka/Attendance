@@ -12,14 +12,14 @@ public class CarryForward
 {
 
 
-  static   String LastAPchain(String division)
+  static   String LastAPchain(String division, String FileNameWithPath)
     {
 
         String lastrecord="";
 
-        String rootDir = Environment.getExternalStorageDirectory().getPath();
+      //  String rootDir = Environment.getExternalStorageDirectory().getPath();
 
-        String FileNameWithPath    = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
+       // String FileNameWithPath    = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File FileToRead = new File(FileNameWithPath);

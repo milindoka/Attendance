@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_carry_forward)
         {
            //if(AttendanceInProgress) { Msg.ImageMessage("Attendance in Progress",R.drawable.blue_red_60); return true; }
-            String lastAPchain=CarryForward.LastAPchain(model.GetDivisionTitle(currentDivision));
+            String lastAPchain=CarryForward.LastAPchain(model.GetDivisionTitle(currentDivision),Filenamewithpath);
          if(lastAPchain.length()==0)  { Msg.Show("No Previous Record"); return true;}
             TA.Fillpositions(lastAPchain);
             TA.notifyDataSetChanged();
