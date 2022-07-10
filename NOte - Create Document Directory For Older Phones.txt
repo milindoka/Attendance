@@ -1,0 +1,64 @@
+
+How to save files in External Storage Public Directory DOCUMENTS on Android 4.1.2
+July 1, 2022 by Android Developer
+All we need is a simple explanation of the problem, which is provided below.
+
+i want to save a file on my Android 4.1.2 smartphone in the documents directory.
+
+This code snippet:
+
+File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),"test.txt");
+
+throws this exception:
+
+E/AndroidRuntime﹕ FATAL EXCEPTION: main
+java.lang.NoSuchFieldError: android.os.Environment.DIRECTORY_DOCUMENTS
+
+While this one is working:
+
+File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"test.txt"); 
+
+But i want to save my file in my documents directory, not in downloads. Ive read DIRECTORY_DOCUMENTS is only available in Android 4.4 and higher. But there is also a documents direcotry on my smartphone. So, is there no solution to save it in documents?
+
+Thx for answers
+
+Pebbles
+Let’s Solve it:
+
+This is a common error many developers questioned us about it. So we write the explanation above. You just have to apply the suggested solution to your code and it will do for you. If you still getting this error after applying this code then comment below we will get back to you with the new method.
+Solution 1
+
+You are not able to access DIRECTORY_DOCUMENTS becuase it is not there in Android 4.1.2. Which means, though there is a Documents directory in your external storage, it is not pointed to by DIRECTORY_DOCUMENTS (since it is non-existent). To solve this, you have to create the directory if it is not present and get the path to that folder manually.
+
+File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
+boolean isPresent = true;
+if (!docsFolder.exists()) {
+    isPresent = docsFolder.mkdir();
+}
+if (isPresent) {
+    File file = new File(docsFolder.getAbsolutePath(),"test.txt"); 
+} else {
+    // Failure
+}
+
+Solution 2
+
+The folder is present in older Versions (from Api 1) of Android but the field DIRECTORY_DOCUMENTS is available first in Version 4.4 (Api 19 – Kitkat).
+
+Solution for me was to use Environment.getExternalStorageDirectory() + "/Documents" instead DIRECTORY_DOCUMENTS for older Android Versions.
+
+Note: You are free to use these solutions for your personal use. We recommend you apply the first solution to your code because it was tested in our system before posting it on this page.
+
+We are always trying to help the developer community, So we made their work easy. Basically, we collected these data from stackoverflow.com, As it is licensed under cc by-sa 2.5, cc by-sa 3.0 and cc by-sa 4.0.
+Categories Android
+Tags android, documents, file, save
+Post navigation
+How to get facebook app link if app wasn't installed
+What will be the side-loading and debugging mechanism for Android apps on ChromeOS?
+Leave a Comment
+
+Comment
+Name
+Email
+
+

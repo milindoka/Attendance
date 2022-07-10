@@ -109,9 +109,9 @@ public class Model
 
 
 
-    void LoadHistory()   //// Load History = Load All Records
+    void LoadHistory(String FileNameWithPath)   //// Load History = Load All Records
     {
-        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
+
         try {
 
             File myFile = new File(FileNameWithPath);

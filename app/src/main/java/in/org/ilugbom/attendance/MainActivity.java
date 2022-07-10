@@ -44,7 +44,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-    private String Filenamewithpath;
+    String Filenamewithpath;
     private File StorageDirectory;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
     private static final int REQUEST_CODE = 1;
@@ -682,9 +682,9 @@ void CloseAndSaveAttendance()
 
     public void ShareFile(){
 
-        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
+        //String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
-        File myFile = new File(FileNameWithPath);
+        File myFile = new File(Filenamewithpath);
 
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
 
@@ -725,7 +725,7 @@ void    SetHistoryMode()
         else
         {
             HistoryMode=true;
-            model.LoadHistory();
+            model.LoadHistory(Filenamewithpath);
             currentDivision = model.Divisions.size()-1;
             DisplayDivision();
         }

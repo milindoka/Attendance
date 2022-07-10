@@ -5,9 +5,6 @@ import android.net.Uri;
 import android.os.Environment;
 
 import java.io.File;
-import java.util.ArrayList;
-
-import javax.security.auth.Subject;
 
 /**
  * Created by Milind on 8/11/18.
@@ -27,7 +24,7 @@ public class SendBackupByEmail
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Attendance Backup");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Sending Marklist...");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "From Attendance App...");
         sendIntent.putExtra(Intent.EXTRA_STREAM, u);
 
         if(email.length()==0) {Msg.show("Specify Email(s) by [Set] button"); return; }
