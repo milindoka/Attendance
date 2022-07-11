@@ -6,8 +6,8 @@ android {
         applicationId "in.org.ilugbom.attendance"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 15
-        versionName "3.5"
+        versionCode 16
+        versionName "3.6"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

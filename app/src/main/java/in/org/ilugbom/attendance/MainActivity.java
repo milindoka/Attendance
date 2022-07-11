@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     TextAdapter TA;
     Msg msg=new Msg();
 
-
+    Boolean Norecords=false;
     Model model;
     Menu settingsMenu; /// 3 dot menu on left side, this variable is used to chekmark from outside menu handler
     CreateDivDialog CDD=new CreateDivDialog();
@@ -271,9 +271,20 @@ public class MainActivity extends AppCompatActivity
 
           Filenamewithpath=get_atd_FilePath();
        //   StorageDirectory=getStorageDirectory();
+       // File myFile = new File(Filenamewithpath);
+        //if (!myFile.exists()) {
+          //  try {
+          //      myFile.createNewFile();
+          //  } catch (IOException e) {
+          //      e.printStackTrace();
+          //  }
+       // }
 
-         MR.SetAtdFileWithPath(Filenamewithpath);
-        //Msg.Show(Filenamewithpath);
+        File myFile = new File(Filenamewithpath);
+        if (!myFile.exists()) { Norecords=true;}
+
+        MR.SetAtdFileWithPath(Filenamewithpath);
+
 
     }  ////////////////////////////////////////// END OF ONCREATE
        /////////////////////////////////////////////////////////
@@ -330,7 +341,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_carry_forward)
         {
-           //if(AttendanceInProgress) { Msg.ImageMessage("Attendance in Progress",R.drawable.blue_red_60); return true; }
+            if (Norecords) { Msg.Show("No Previous Records"); return true;}
             String lastAPchain=CarryForward.LastAPchain(model.GetDivisionTitle(currentDivision),Filenamewithpath);
          if(lastAPchain.length()==0)  { Msg.Show("No Previous Record"); return true;}
             TA.Fillpositions(lastAPchain);
@@ -350,7 +361,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_invert_selection)
         {
             InvertAttendance();
-            Msg.Show("Selection Inverted");
+
             return true;
         }
 
@@ -368,7 +379,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (id == R.id.action_history_mode)
-        {  if(HistoryMode)   /// if historymode is ON
+        {   if(Norecords) { Msg.Show("No History"); return true;}
+            if(HistoryMode)   /// if historymode is ON
             { if(modified) {  Msg.Show("History modified, Save or Discard First !");
                             return true;}
                 SetHistoryMode(); // switch off history
@@ -376,9 +388,13 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             //// Now Attendance ON HistoryMode OFF
+
+
+
             if(modified) {  Msg.Show("Attendance Modified, Save or Discard First !");
                 return true; }
                // otherwise switch history mode to ON
+
             SetHistoryMode();
             item.setChecked(true);
             return true;
@@ -410,6 +426,7 @@ public class MainActivity extends AppCompatActivity
         switch (id)
         {
             case R.id.nav_printmonthlyreport :
+                if (Norecords) { Msg.Show("No Records"); break;}
                 divmpd.SetDiv(model.Divisions,currentDivision);
                 divmpd.ShowDivMonthDailog();
 /*
@@ -422,13 +439,15 @@ public class MainActivity extends AppCompatActivity
 */
             break;
 
-            case R.id.nav_jump :  dmpd.ShowDayMonthDailog(); break;
+            case R.id.nav_jump : if (Norecords) { Msg.Show("No Records"); break;}
+                                dmpd.ShowDayMonthDailog(); break;
 
             case R.id.nav_help : HD.showDialog(MainActivity.this); break;
 
             case R.id.nav_setpreferences : CDD.showPreferenceDialog(MainActivity.this); break;
 
-            case R.id.nav_share : ShareFile(Filenamewithpath);break;
+            case R.id.nav_share : if (Norecords) { Msg.Show("No Records To Share"); break;}
+                                   ShareFile(Filenamewithpath);break;
 
             case R.id.nav_import : Msg.Show("Data Import not yet implemented"); break;
         }
@@ -626,7 +645,7 @@ void CloseAndSaveAttendance()
             TA.selectedPositions.clear();
             DisplayDivision();
             modified=false;
-
+            Norecords=false;
 
     }
 
@@ -660,6 +679,7 @@ void CloseAndSaveAttendance()
         TA.Fillpositions(Line);
             TA.notifyDataSetChanged();
         FC.setText(String.format("%d",TA.selectedPositions.size()));
+        Msg.Show("Selection Inverted");
 
     }
 
@@ -738,6 +758,7 @@ void    SetHistoryMode()
         else
         {
             HistoryMode=true;
+            if (Filenamewithpath.isEmpty()) {  Msg.Show("No Records Found"); return;}
             model.LoadHistory(Filenamewithpath);
             currentDivision = model.Divisions.size()-1;
             DisplayDivision();

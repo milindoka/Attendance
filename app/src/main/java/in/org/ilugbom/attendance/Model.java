@@ -95,9 +95,6 @@ public class Model
         return (date + " - " + dow + " - " + time);
     }
 
-
-
-
     void LoadHistory(String FileNameWithPath)   //// Load History = Load All Records
     {
 
