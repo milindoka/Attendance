@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     int counter=0;
     TextAdapter TA;
     Msg msg=new Msg();
-    SendBackupByEmail sbbe=new SendBackupByEmail();
+
 
     Model model;
     Menu settingsMenu; /// 3 dot menu on left side, this variable is used to chekmark from outside menu handler
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
         msg.SetMA(this);
-        sbbe.SetMA(this);
+
         dmpd.SetMA(this);
         divmpd.SetMA(this);
 
@@ -270,9 +270,9 @@ public class MainActivity extends AppCompatActivity
       //  navigationView.setBackgroundColor(getResources().getColor(R.color.skyBlue));
 
           Filenamewithpath=get_atd_FilePath();
-          StorageDirectory=getStorageDirectory();
+       //   StorageDirectory=getStorageDirectory();
 
-         MR.SetStorageDirectory(StorageDirectory);
+         MR.SetAtdFileWithPath(Filenamewithpath);
         //Msg.Show(Filenamewithpath);
 
     }  ////////////////////////////////////////// END OF ONCREATE
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_share : ShareFile(Filenamewithpath);break;
 
-            case R.id.nav_import : sbbe.Send(CDD.email); break;
+            case R.id.nav_import : Msg.Show("Data Import not yet implemented"); break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -619,14 +619,14 @@ void CloseAndSaveAttendance()
             return;
 
         }
+
+
         ///else normal mode so save on sd card
-        if(StoragePermissionGranted())
-        {
             model.SaveList(AL,Filenamewithpath);
             TA.selectedPositions.clear();
             DisplayDivision();
             modified=false;
-        }
+
 
     }
 
@@ -668,9 +668,14 @@ void CloseAndSaveAttendance()
         String[] monthnames = {" ","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
      //  Msg.Show("test");
 
+
+
         String tempfilename="Report-"+div+"-"+monthnames[month]+".pdf";
-        File pdfFile=new File(StorageDirectory,tempfilename);
-        String filename    = pdfFile.getPath();
+        File atdDirectory=getApplicationContext().getFilesDir();
+        File pdfFile=new File(atdDirectory,tempfilename);
+        String filename = pdfFile.getPath();
+
+
 
         MR.SetCollegeTeacherSubject(CDD.GetCollege(),CDD.GetTeacher(),CDD.GetSubject());
         try {
@@ -683,6 +688,8 @@ void CloseAndSaveAttendance()
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+       // ShareFile(filename);
     }
 
 
@@ -700,7 +707,7 @@ void CloseAndSaveAttendance()
 
         if(myFile.exists())
         {
-            intentShareFile.setType("application/text");
+            intentShareFile.setType("application/pdf");
             intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
 
             intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
@@ -744,7 +751,7 @@ void    SetHistoryMode()
     void JumpOnDate(String DayMonth)
     {
       if(modified) { Msg.Show("Save Before Jump"); return;}
-      if(!HistoryMode) { SetHistoryMode(); settingsMenu.getItem(4).setChecked(true); }
+      if(!HistoryMode) { SetHistoryMode(); settingsMenu.getItem(5).setChecked(true); }
 
       if(model.DateArray.size()>0)
       {   boolean found=false;
@@ -779,58 +786,20 @@ void    SetHistoryMode()
     }
 
 
-
-    public  boolean StoragePermissionGranted()
-    {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //Log.v(TAG,"Permission is granted");
-                return true;
-            } else {
-
-                //Log.v(TAG,"Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            //  Log.v(TAG,"Permission is granted");
-            return true;
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED)
-        {
-            Msg.Show("Permission Granted");
-
-            String AL=GetAttendanceLine(); //current line :  AAPAPAPP...etc
-            model.SaveList(AL,Filenamewithpath);
-            TA.selectedPositions.clear();
-            DisplayDivision();
-            modified=false;
-
-        }
-    }
-
-
+/*
     private File getStorageDirectory()
-    {
-        ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
-        File sDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+    {   File sDirectory=getApplicationContext().getFilesDir();
+        //ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
+        //File sDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         //File atdFile=new File(atdDirectory,"AttendanceData.atd");
         //return atdFile.getPath();
         return sDirectory;
     }
-
+*/
     private String get_atd_FilePath()
-    {
-        ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
-        File atdDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+    {   File atdDirectory=getApplicationContext().getFilesDir();
+        //ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
+        //File atdDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         File atdFile=new File(atdDirectory,"AttendanceData.atd");
         return atdFile.getPath();
     }

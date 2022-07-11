@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="false"
 
         android:theme="@style/AppTheme">
         <activity
@@ -32,8 +32,5 @@
                 android:resource="@xml/provider_paths"/>
         </provider>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
 </manifest>

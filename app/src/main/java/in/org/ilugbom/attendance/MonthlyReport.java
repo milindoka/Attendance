@@ -35,7 +35,7 @@ public class MonthlyReport {
     int DailyCount[]=new int[31]; //For daily present total
     String ClassDiv="";
     String college,teacher,subject;
-    File StorageDirectory;
+    String atdFilenamewithpath;
 
     ArrayList<String> roll=new ArrayList<String>();//creating new generic arraylist
     ArrayList<String> attendanceLines=new ArrayList<String>();//creating new generic arraylist
@@ -47,8 +47,8 @@ public class MonthlyReport {
      void SetCollegeTeacherSubject(String college,String teacher, String subject)
      { this.college=college; this.teacher=teacher;this.subject=subject;  }
 
-    void SetStorageDirectory(File SD)
-    { StorageDirectory = SD; }
+    void SetAtdFileWithPath(String atdfname)
+    { atdFilenamewithpath = atdfname; }
 
 
     void FillRollArray()
@@ -78,11 +78,9 @@ public class MonthlyReport {
     {
         attendanceLines.removeAll(attendanceLines);
 
-        File atdFile=new File(StorageDirectory,"AttendanceData.atd");
-        String FileNameWithPath    = atdFile.getPath();
 
         try {
-            File FileToRead = new File(FileNameWithPath);
+            File FileToRead = new File(atdFilenamewithpath);
             FileInputStream FINS = new FileInputStream(FileToRead);
             BufferedReader bfrReader = new BufferedReader(new InputStreamReader(FINS));
             String AttendanceRecord = " ";
