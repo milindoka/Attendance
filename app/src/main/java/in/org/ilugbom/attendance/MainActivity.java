@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     private EditText ImportedEditText;
+    ImportDialog importDialog;
+
+
     String Filenamewithpath;
     private File StorageDirectory;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
@@ -221,6 +224,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 //////////////////// Button Listeners ////////////////////////////////////
+
 
         buttonDivTitle=findViewById(R.id.buttonDivTitle);
         buttonDivTitle.setOnClickListener(new Button.OnClickListener() {
@@ -460,10 +464,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     void ShowImportDialog(){
-        ImportDialog importDialog=new ImportDialog();
+         importDialog=new ImportDialog();
         importDialog.show(getSupportFragmentManager(),"Import Dialog");
 
     }
+
+    void CloseImportDlg()
+    {
+        importDialog.dismiss();
+    }
+
+
 
     void OnFloatingButton()
     {
@@ -481,7 +492,6 @@ public class MainActivity extends AppCompatActivity
              }
     }
 ////////////////////////////////////////////////
-
 
 
 

@@ -11,8 +11,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class ImportDialog extends AppCompatDialogFragment {
+    private Button importButton;
+    private Button cancelButton;
 
-    //CancelButton = (Button) findViewById(R.id.btn_cancel);
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -23,6 +24,15 @@ public class ImportDialog extends AppCompatDialogFragment {
         builder.setView(view)
                 .setTitle("Import Text");
 
+importButton=view.findViewById(R.id.btn_import);
+cancelButton=view.findViewById(R.id.btn_cancel);
+
+cancelButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+    dismiss();
+    }
+});
 
         return builder.create();
 
