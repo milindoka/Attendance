@@ -28,6 +28,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -47,8 +49,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     private EditText ImportedEditText;
-    Button ImportButton;
-    Button CancelButton;
     String Filenamewithpath;
     private File StorageDirectory;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
@@ -94,9 +94,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //  LL = (LinearLayout) findViewById(R.id.ClassBar);
 
-        ImportedEditText = (EditText) findViewById(R.id.Imported_Text);
-        ImportButton = (Button) findViewById(R.id.btn_import);
-        CancelButton = (Button) findViewById(R.id.btn_cancel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         msg.SetMA(this);
@@ -119,12 +116,6 @@ public class MainActivity extends AppCompatActivity
        model.LoadDivisions();
 
 
-        ImportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -458,7 +449,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_share : if (Norecords) { Msg.Show("No Records To Share"); break;}
                                    ShareFile(Filenamewithpath);break;
 
-            case R.id.nav_import : Msg.Show("Data Import not yet implemented"); break;
+            case R.id.nav_import : //Msg.Show("Data Import not yet implemented");
+                                 ShowImportDialog();
+                     break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -466,6 +459,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    void ShowImportDialog(){
+        ImportDialog importDialog=new ImportDialog();
+        importDialog.show(getSupportFragmentManager(),"Import Dialog");
+
+    }
 
     void OnFloatingButton()
     {
