@@ -19,6 +19,7 @@ import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AlertDialog;
 
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.material.navigation.NavigationView;
@@ -31,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
@@ -44,6 +46,9 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+    private EditText ImportedEditText;
+    Button ImportButton;
+    Button CancelButton;
     String Filenamewithpath;
     private File StorageDirectory;
     private static final String TAG = "MainActivity";  //for rutime storage permission code
@@ -76,15 +81,10 @@ public class MainActivity extends AppCompatActivity
 
     static  int currentDivision = 0;
 
-   // LinearLayout LL;
-
-
-
     //////////////////ON CREATE METHOD //////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +94,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //  LL = (LinearLayout) findViewById(R.id.ClassBar);
 
+        ImportedEditText = (EditText) findViewById(R.id.Imported_Text);
+        ImportButton = (Button) findViewById(R.id.btn_import);
+        CancelButton = (Button) findViewById(R.id.btn_cancel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
         setSupportActionBar(toolbar);
         msg.SetMA(this);
 
@@ -116,6 +117,14 @@ public class MainActivity extends AppCompatActivity
 
         model  = new Model();
        model.LoadDivisions();
+
+
+        ImportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

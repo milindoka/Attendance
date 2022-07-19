@@ -29,12 +29,12 @@
         android:background="#333">
 
         <Button
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_import"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:text="Okay" />
+            android:text="Import" />
 
         <Button
             android:id="@+id/btn_cancel"
