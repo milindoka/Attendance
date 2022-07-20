@@ -45,12 +45,9 @@ import com.itextpdf.text.DocumentException;
 import java.io.File;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    private EditText ImportedEditText;
     ImportDialog importDialog;
-
 
     String Filenamewithpath;
     private File StorageDirectory;
@@ -465,15 +462,10 @@ public class MainActivity extends AppCompatActivity
 
     void ShowImportDialog(){
          importDialog=new ImportDialog();
+         importDialog.SetFilePath(Filenamewithpath);
         importDialog.show(getSupportFragmentManager(),"Import Dialog");
 
     }
-
-    void CloseImportDlg()
-    {
-        importDialog.dismiss();
-    }
-
 
 
     void OnFloatingButton()
