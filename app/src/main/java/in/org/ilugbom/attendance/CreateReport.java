@@ -14,11 +14,14 @@ import java.util.ArrayList;
 
 public class CreateReport
 {
+    String FileNameWithPath;
     ArrayList<String> Divisions = new ArrayList<String>();
+
+    void SetAtdFileWithPath(String atdfname)
+    { FileNameWithPath= atdfname; }
 
     void LoadHistory(String divtitle)   //// Load All Records of one division
     {
-        String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
 

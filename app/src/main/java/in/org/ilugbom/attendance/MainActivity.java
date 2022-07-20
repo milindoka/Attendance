@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Integer tt = new Integer(position);
                 int index=tt.intValue();
                 CreateReport CR=new CreateReport();
+                CR.SetAtdFileWithPath(Filenamewithpath);
                 CR.LoadHistory(model.GetDivisionTitle(currentDivision));
                 CR.ShowReport(index);
 
@@ -285,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!myFile.exists()) { Norecords=true;}
 
         MR.SetAtdFileWithPath(Filenamewithpath);
+
 
 
     }  ////////////////////////////////////////// END OF ONCREATE
@@ -724,8 +726,6 @@ void CloseAndSaveAttendance()
 
     public void ShareFile(String sharefilepath){
 
-        //String FileNameWithPath = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
-
         File myFile = new File(sharefilepath);
 
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
@@ -816,21 +816,11 @@ void    SetHistoryMode()
     }
 
 
-/*
-    private File getStorageDirectory()
-    {   File sDirectory=getApplicationContext().getFilesDir();
-        //ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
-        //File sDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        //File atdFile=new File(atdDirectory,"AttendanceData.atd");
-        //return atdFile.getPath();
-        return sDirectory;
-    }
-*/
     private String get_atd_FilePath()
     {   File atdDirectory=getApplicationContext().getFilesDir();
         //ContextWrapper contextwrap = new ContextWrapper(getApplicationContext());
         //File atdDirectory=contextwrap.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        File atdFile=new File(atdDirectory,"AttendanceData.atd");
+        File atdFile=new File(atdDirectory,"AttendanceData.txt");
         return atdFile.getPath();
     }
 

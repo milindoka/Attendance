@@ -17,9 +17,6 @@ public class CarryForward
 
         String lastrecord="";
 
-      //  String rootDir = Environment.getExternalStorageDirectory().getPath();
-
-       // String FileNameWithPath    = Environment.getExternalStorageDirectory().getPath()+"/AttendanceData.atd";
 
         try {
             File FileToRead = new File(FileNameWithPath);
