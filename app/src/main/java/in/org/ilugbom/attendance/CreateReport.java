@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class CreateReport
 {
     String FileNameWithPath;
-    ArrayList<String> Divisions = new ArrayList<String>();
+    ArrayList<String> Divisions = new ArrayList<String>(); //
+    String Rollswithcomma;     //
 
     void SetAtdFileWithPath(String atdfname)
     { FileNameWithPath= atdfname; }
@@ -44,7 +45,6 @@ public class CreateReport
              }
             myReader.close();
 
-
         }
         catch (Exception e)
 
@@ -56,15 +56,18 @@ public class CreateReport
 
 
 
-    void ShowReport(int index)
+    void ShowReport(int index, String roll)
     {
+
         int counter=0;
         for(int i=0;i<Divisions.size();i++)
             if(Divisions.get(i).charAt(index)=='P') counter++;
         float percentage,sum;
         sum=counter;
+        if(Divisions.size()!=0)
         percentage=sum*100/Divisions.size();
-        Msg.show(String.format("%d/%d  =  %.2f%%",counter,Divisions.size(),percentage));
+        else percentage=0;
+        Msg.Show(String.format("%s  :  %d/%d  =  %.2f%%",roll,counter,Divisions.size(),percentage));
 
     }
 

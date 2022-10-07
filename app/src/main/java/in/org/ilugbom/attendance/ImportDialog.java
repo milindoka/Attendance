@@ -46,7 +46,7 @@ public class ImportDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 String fromeditBox=ImportedEditText.getText().toString();
-                Msg.Show(fromeditBox);
+                //Msg.Show(fromeditBox);
                 SaveImported(datafilepath,fromeditBox);
                 dismiss();
             }

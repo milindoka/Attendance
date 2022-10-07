@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 int firstPosition = gridView.getFirstVisiblePosition();
                 int childPosition = position - firstPosition;
                 TextView txtView = (TextView) gridView.getChildAt(childPosition);
+
                 Integer tt = new Integer(position);
                 if (TA.selectedPositions.contains(tt)) {
                     txtView.setBackgroundColor(Color.parseColor("#fbdcbb"));
@@ -153,10 +154,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 TextView txtView = (TextView) gridView.getChildAt(childPosition);
                 Integer tt = new Integer(position);
                 int index=tt.intValue();
+
+                String RollStrip=model.GetRollStrip(currentDivision);
+                String[] temp;
+                temp = RollStrip.split(",");
+
+                // Msg.Show(temp[index]);
                 CreateReport CR=new CreateReport();
                 CR.SetAtdFileWithPath(Filenamewithpath);
                 CR.LoadHistory(model.GetDivisionTitle(currentDivision));
-                CR.ShowReport(index);
+                CR.ShowReport(index,temp[index]);
 
                 return true;
             }

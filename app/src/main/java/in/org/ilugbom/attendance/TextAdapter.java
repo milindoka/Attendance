@@ -51,9 +51,6 @@ public class TextAdapter extends BaseAdapter
     }
 
 
-
-
-
     void DisplayDivision(String divline)
     {
         String temp[],temp1[];
@@ -63,9 +60,7 @@ public class TextAdapter extends BaseAdapter
      //   String start=temp1[0];
       //  String end=temp1[len-1];
 
-
        Fillpositions(temp[2]);
-
         numbers=new String[len];
         numbers=temp1;
         /*
